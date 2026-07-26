@@ -11,6 +11,20 @@
 - 次に何をすればいいのか
 - どのルールで開発するのか
 
+## 最重要ファイル
+
+ルート直下の `PROJECT_STATE.md` を、プロジェクトの現在地を示す唯一の基準ファイルとして使用します。
+
+人間・ChatGPT・Codexは、必ず以下を守ります。
+
+1. 作業開始時に `PROJECT_STATE.md` を最初に読む
+2. 実装・仕様・確認結果が変わったら同じ作業内で更新する
+3. 最終報告の前に `PROJECT_STATE.md` を更新してコミットする
+4. 会話履歴やPR本文だけに現在地を残さない
+5. 未確認の内容を「完了」「動作確認済み」と書かない
+
+`PROJECT_STATE.md` が存在しないプロジェクトは、開発開始前に必ず作成してください。
+
 ## UTENA標準ルール
 
 このプロジェクトでは、以下を必ず守ります。
@@ -26,9 +40,10 @@
 ## ドキュメント構成
 
 ```text
+PROJECT_STATE.md          現在地・確認状況・未完成・次の作業（必須）
 docs/
 ├── PROJECT_OVERVIEW.md   プロジェクト概要
-├── CURRENT_STATUS.md     現在の状態
+├── CURRENT_STATUS.md     状態の詳細資料
 ├── ROADMAP.md            今後やること
 ├── DEVELOPMENT_RULES.md  開発ルール
 ├── KNOWN_ISSUES.md       既知の不具合・未確認事項
@@ -36,26 +51,33 @@ docs/
 └── HANDOFF.md            引き継ぎメモ
 ```
 
+`docs/CURRENT_STATUS.md` は詳細資料として残せますが、最新の現在地・未完成・次にやることは必ず `PROJECT_STATE.md` にも反映します。
+
 ## 最初にやること
 
 新規プロジェクトをこのテンプレートから開始したら、最初に以下を書き換えてください。
 
-1. この `README.md` に実プロジェクト名と概要を追加する
-2. `docs/PROJECT_OVERVIEW.md`
-3. `docs/CURRENT_STATUS.md`
-4. `docs/ROADMAP.md`
-5. `docs/DEVELOPMENT_RULES.md`
+1. `PROJECT_STATE.md`
+2. この `README.md` に実プロジェクト名と概要を追加する
+3. `docs/PROJECT_OVERVIEW.md`
+4. `docs/CURRENT_STATUS.md`
+5. `docs/ROADMAP.md`
+6. `docs/DEVELOPMENT_RULES.md`
 
-最低限、次の3つは空欄にしないでください。
+最低限、`PROJECT_STATE.md` の次の項目は空欄にしないでください。
 
-- プロジェクトの目的
-- 現在の状態
+- プロジェクト名
+- 目的
+- 現在の到達点
+- 未完成
 - 次にやること
+- 完成条件
 
 ## ChatGPT / Codex への依頼例
 
 ```text
-README.md と docs/ 以下のドキュメントを読んでから作業してください。
+最初に PROJECT_STATE.md、README.md、docs/ 以下を読んでください。
+PROJECT_STATE.md が存在しない場合は、実装前に作成してください。
 
 目的:
 〇〇を修正したい。
@@ -64,7 +86,8 @@ README.md と docs/ 以下のドキュメントを読んでから作業してく
 - 会話履歴に依存しない形で判断してください。
 - 未確認のことを完了扱いしないでください。
 - 修正後はソースコードとドキュメントを両方更新してください。
-- 最後に現在の状態と次にやることを docs に反映してください。
+- 最終回答の前に PROJECT_STATE.md を現在の状態へ更新し、コミットしてください。
+- PROJECT_STATE.md の「次にやること」が空のまま終了しないでください。
 ```
 
 ## GitHub Template Repositoryとして使う方法
@@ -81,4 +104,5 @@ GitHub上での設定:
 
 1. GitHub上で `Use this template` を押す
 2. 新しいリポジトリ名を入力する
-3. 作成後、READMEとdocsをプロジェクト内容に合わせて更新する
+3. 作成後、最初に `PROJECT_STATE.md` をプロジェクト内容に合わせて更新する
+4. READMEとdocsをプロジェクト内容に合わせて更新する
